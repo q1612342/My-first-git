@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+*{margin:0;padding:0;}
+
+#target{
+	width:100px;
+	height:60px;
+	border:1px solid red;
+	position: relative;
+	top:500px;
+	left:50px;
+}
+li{
+	height: 160px;
+	width:100%;
+	border:1px solid red;
+	float:right;	
+}
+li span {
+	width:40px;
+	height:40px;
+	background: red;
+	position: absolute;
+	right:10px;
+}
+</style>
+</head>
+<body><!--
+<div id="element"></div>
+<div id="target"></div>-->
+<div id="target"></div>
+<ul>
+	<li><span></span></li>
+	<li><span></span></li>
+	<li><span></span></li>
+</ul>
+<script src="parabola-min.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	var element = document.querySelectorAll("span"), 
+	    target = document.getElementById("target");
+	// 抛物线元素的的位置标记
+	//element.index = i;
+	
+	for(var i=0;i<element.length;i++){
+		(function(a){
+			// 抛物线运动的触发
+			var parabola = funParabola(element[a], target).mark();
+			element[i].onclick = function() {
+			    this.style.marginLeft = "0px";
+			    this.style.marginTop = "0px";
+			    parabola.init();}
+		  /*  element[i].addEventListener('touchstart',function(){
+		    	this.style.marginLeft = "0px";
+			    this.style.marginTop = "0px";
+			    parabola.init();
+		    });*/
+	
+		})(i);	
+	}	
+}
+</script>
+
+</body>
+</html>
